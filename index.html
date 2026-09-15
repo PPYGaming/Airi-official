@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Airi — Minecraft Bedrock Discord Bot"><meta name="theme-color" content="#07091d"><title>Airi • Minecraft Bedrock Discord Bot</title><style>
+:root{--bg:#030512;--panel:rgba(8,12,39,.82);--line:rgba(130,116,255,.34);--text:#f7f5ff;--muted:#b8b5d6;--a:#7c5cff;--b:#ff4fd8;--c:#36d9ff;--ok:#45ef8b}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg) url("airi-poster.png") center top/cover fixed no-repeat;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(124,92,255,.16),transparent 35%),linear-gradient(135deg,rgba(2,4,18,.94),rgba(6,4,28,.82),rgba(1,8,22,.94));z-index:-2}body:after{content:"";position:fixed;inset:0;backdrop-filter:blur(2px);z-index:-1;pointer-events:none}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1180px,94vw);margin:auto}.top{position:sticky;top:0;z-index:100;background:rgba(3,5,18,.76);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{min-height:76px;display:flex;align-items:center;gap:18px}.brand{display:flex;align-items:center;min-width:0}.logo{display:block;height:58px;width:auto;max-width:210px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(124,92,255,.55))}.status{margin-left:auto;display:flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid rgba(69,239,139,.35);background:rgba(69,239,139,.08);border-radius:999px;color:#caffdc;font-size:14px;white-space:nowrap}.dot{width:9px;height:9px;flex:0 0 9px;background:var(--ok);border-radius:50%;box-shadow:0 0 14px var(--ok)}.discord{padding:11px 17px;border-radius:999px;background:linear-gradient(135deg,#5865f2,#7b5cff);font-weight:800;box-shadow:0 0 24px rgba(88,101,242,.3);white-space:nowrap;transition:.25s}.discord:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(88,101,242,.38)}.hero{padding:76px 0 30px}.hero-card{padding:clamp(28px,5vw,52px);border:1px solid var(--line);border-radius:34px;background:linear-gradient(135deg,rgba(8,10,35,.82),rgba(28,10,57,.58));box-shadow:0 25px 90px rgba(0,0,0,.42),inset 0 0 50px rgba(124,92,255,.06);overflow:hidden}.kicker{display:inline-flex;padding:8px 13px;border-radius:999px;border:1px solid rgba(54,217,255,.35);background:rgba(54,217,255,.08);color:#a9f2ff;font-weight:800;font-size:13px}h1{font-size:clamp(44px,8vw,92px);line-height:.92;margin:20px 0 16px;letter-spacing:-4px;background:linear-gradient(90deg,#fff,#9c86ff,#ff72dd);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{font-size:19px;line-height:1.65;color:var(--muted);max-width:760px;margin:0}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{border:1px solid var(--line);padding:14px 20px;border-radius:18px;background:rgba(255,255,255,.06);color:var(--text);font-weight:800;cursor:pointer;transition:.25s}.btn:hover{transform:translateY(-2px);border-color:rgba(194,151,255,.7)}.btn.primary{background:linear-gradient(135deg,#7359ff,#c14dff);box-shadow:0 10px 35px rgba(124,92,255,.3)}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:18px;padding:22px 0 70px;align-items:start}.side,.content-panel{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(16px);border-radius:28px}.side{padding:13px;position:sticky;top:94px;z-index:10}.side .label{font-size:11px;color:#817da5;text-transform:uppercase;letter-spacing:1.5px;padding:13px 15px 7px}.side button{width:100%;border:0;color:var(--text);background:transparent;text-align:left;padding:13px 15px;margin:3px 0;border-radius:16px;font-size:15px;font-weight:750;cursor:pointer;transition:.22s}.side button:hover,.side button.active{background:linear-gradient(90deg,rgba(124,92,255,.35),rgba(255,79,216,.12));box-shadow:inset 3px 0 0 #9b7cff}.content-panel{padding:clamp(20px,3vw,30px);min-height:520px;overflow:hidden}.panel{display:none}.panel.active{display:block;animation:panelIn .35s ease}@keyframes panelIn{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.panel h2{margin:0;font-size:30px}.sub{color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{padding:20px;min-width:0;border:1px solid rgba(130,116,255,.27);border-radius:22px;background:linear-gradient(145deg,rgba(24,20,65,.78),rgba(7,10,30,.7));transition:.25s}.card:hover{transform:translateY(-3px);border-color:rgba(194,151,255,.65);box-shadow:0 15px 45px rgba(0,0,0,.25)}.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:rgba(124,92,255,.18);font-size:23px;margin-bottom:12px}.card h3{margin:0 0 7px;font-size:18px}.card p{margin:0;color:var(--muted);line-height:1.55}.commands{display:grid;gap:10px}.cmd{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 17px;border:1px solid rgba(130,116,255,.22);border-radius:17px;background:rgba(255,255,255,.035)}code{color:#d8cbff;overflow-wrap:anywhere}.cmd span{color:var(--muted);text-align:right}.notice{padding:18px;border-radius:20px;background:linear-gradient(90deg,rgba(124,92,255,.15),rgba(255,79,216,.08));border:1px solid rgba(194,151,255,.25);margin-bottom:15px;line-height:1.55}.owner{display:grid;grid-template-columns:1fr 1fr;gap:15px}.dm{border:1px solid rgba(255,79,216,.28);background:rgba(40,11,49,.45);border-radius:22px;padding:20px}footer{border-top:1px solid var(--line);padding:28px 0 40px;background:rgba(2,4,16,.75)}.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px;color:var(--muted);font-size:13px}.footlinks{display:flex;gap:16px;flex-wrap:wrap}.footlinks a:hover{color:#fff}.footer-link{border:0;background:transparent;color:inherit;font:inherit;padding:0;cursor:pointer}.footer-link:hover{color:#fff}@media(max-width:800px){.wrap{width:min(94vw,680px)}.nav{min-height:68px;gap:10px}.logo{height:50px;max-width:170px}.status{display:none}.discord{padding:10px 14px;font-size:13px}.hero{padding-top:30px}.hero-card{padding:26px;border-radius:26px}h1{font-size:clamp(42px,13vw,70px);letter-spacing:-2.5px}.hero p{font-size:17px}.layout{grid-template-columns:1fr;padding-top:14px}.side{position:sticky;top:69px;display:flex;align-items:center;gap:5px;padding:9px;overflow-x:auto;scrollbar-width:none;border-radius:20px}.side::-webkit-scrollbar{display:none}.side .label{display:none}.side button{width:auto;min-width:max-content;margin:0;padding:11px 13px;font-size:14px}.content-panel{border-radius:24px}.cards,.owner{grid-template-columns:1fr}.cmd{align-items:flex-start;flex-direction:column;gap:7px}.cmd span{text-align:left}}@media(max-width:520px){.nav{justify-content:space-between}.logo{height:44px;max-width:145px}.discord{font-size:12px;padding:9px 12px}.hero-card{padding:22px}.kicker{font-size:11px}h1{font-size:43px}.hero p{font-size:16px;line-height:1.55}.actions{display:grid}.btn{width:100%;text-align:center;padding:13px 15px}.content-panel{padding:18px}.panel h2{font-size:25px}.card{padding:17px}.foot{font-size:12px}}:focus-visible{outline:2px solid #bcaeff;outline-offset:3px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+<style>
+.support-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  margin-top:24px;
+}
+.support-card{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.045);
+  color:inherit;
+  border-radius:24px;
+  padding:24px;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.support-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.25);
+  background:rgba(255,255,255,.075);
+}
+.support-icon{display:block;font-size:30px;margin-bottom:12px}
+.support-card strong{display:block;font-size:18px}
+.support-card small{display:block;opacity:.65;margin-top:7px}
+.support-modal{
+  position:fixed;inset:0;z-index:9999;display:none;
+  align-items:center;justify-content:center;padding:20px;
+}
+.support-modal.open{display:flex}
+.support-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
+.support-box{
+  position:relative;width:min(620px,100%);max-height:90vh;overflow:auto;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(10,12,30,.97);
+  border-radius:28px;padding:28px;
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
+}
+.support-close{
+  position:absolute;right:16px;top:12px;border:0;background:transparent;
+  color:inherit;font-size:30px;cursor:pointer;opacity:.7;
+}
+.support-kicker{font-size:11px;letter-spacing:.18em;opacity:.55}
+.support-box h3{font-size:28px;margin:7px 0 4px}
+.support-note{font-size:13px;opacity:.6;margin:0 0 20px}
+.support-label{display:block;font-size:13px;font-weight:600;margin:15px 0 7px}
+.support-input{
+  width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.055);color:inherit;border-radius:14px;
+  padding:13px 14px;font:inherit;outline:none;
+}
+.support-input:focus{border-color:rgba(255,255,255,.35)}
+.support-textarea{resize:vertical;min-height:150px}
+.support-file{width:100%;font:inherit}
+.support-files{font-size:12px;opacity:.6;margin-top:7px}
+.support-submit{margin-top:22px;width:100%}
+.support-status{font-size:13px;margin-top:12px;line-height:1.5}
+@media(max-width:760px){
+  .support-grid{grid-template-columns:1fr}
+  .support-box{padding:22px}
+}
+</style>
+
+
+<style>
+.support-dashboard-card{
+  width:100%;
+  color:inherit;
+  text-align:left;
+  font:inherit;
+  cursor:pointer;
+  appearance:none;
+}
+.support-dashboard-card h3,
+.support-dashboard-card p{margin-left:0;margin-right:0}
+.support-dashboard-card:focus-visible{outline:2px solid #bcaeff;outline-offset:3px}
+</style>
+
+</head><body>
+<header class="top"><div class="wrap nav"><div class="brand"><img class="logo" src="airi-logo.gif" alt="Airi logo"></div><div class="status"><span class="dot"></span> Bot Online</div><button class="discord" type="button" onclick="inviteAiri()">Add Airi</button></div></header>
+<main><section class="hero wrap"><div class="hero-card"><span class="kicker">✦ Minecraft Bedrock Discord Bot</span><h1>Your Server,<br>Smarter with Airi.</h1><p>Search Minecraft Bedrock addons, get update notifications, YouTube alerts, welcome messages, invite logs and more — all inside Discord.</p><div class="actions"><button class="btn primary" type="button" onclick="inviteAiri()">💜 Add Airi to your server</button><button class="btn" type="button" onclick="openPanel('features',true)">✨ Explore Features</button></div></div></section>
+<section class="wrap layout"><aside class="side" aria-label="Airi Dashboard navigation"><div class="label">Airi Dashboard</div><button type="button" data-panel="home" onclick="openPanel('home')">🏠 Home</button><button type="button" data-panel="features" onclick="openPanel('features')">✨ Features</button><button type="button" data-panel="commands" onclick="openPanel('commands')">⌨️ Commands</button><button type="button" data-panel="addons" onclick="openPanel('addons')">🔎 Addons</button><button type="button" data-panel="updates" onclick="openPanel('updates')">🔔 Updates</button><button type="button" data-panel="support" onclick="openPanel('support')">💬 Support</button><button type="button" data-panel="owner" onclick="openPanel('owner')">👑 Server Owners DM</button></aside><div class="content-panel">
+<section id="home" class="panel"><div class="panel-head"><div><h2>Welcome to Airi 💜</h2><div class="sub">A simple dashboard for the Airi Discord bot.</div></div></div><div class="cards"><article class="card"><div class="icon">🤖</div><h3>Airi is Online</h3><p>Ready to help Minecraft Bedrock communities on Discord.</p></article><article class="card"><div class="icon">🌌</div><h3>Made for Minecraft</h3><p>Focused tools for addons, community management and notifications.</p></article><article class="card"><div class="icon">⚡</div><h3>Fast & Simple</h3><p>Use slash commands where needed and keep everyday actions easy.</p></article><article class="card"><div class="icon">💜</div><h3>Built by PPYGaming</h3><p>Founder: PPYGaming · Tamil Crafters Studio</p></article></div></section>
+<section id="features" class="panel"><div class="panel-head"><div><h2>Key Features ✨</h2><div class="sub">One clean category panel at a time.</div></div></div><div class="cards"><article class="card"><div class="icon">🔎</div><h3>/addon</h3><p>Search and download Minecraft Bedrock addons from CurseForge.</p></article><article class="card"><div class="icon">📦</div><h3>CurseForge Integration</h3><p>Addon details and direct download links.</p></article><article class="card"><div class="icon">🔔</div><h3>Addon Update Notifications</h3><p>Receive alerts when watched addons are updated.</p></article><article class="card"><div class="icon">▶️</div><h3>YouTube Notifications</h3><p>Get alerts for selected YouTube channels.</p></article><article class="card"><div class="icon">👋</div><h3>Welcome / Goodbye</h3><p>Automatic member welcome and goodbye messages.</p></article><article class="card"><div class="icon">👥</div><h3>Invite Logs</h3><p>Track new members and invitation activity.</p></article><article class="card"><div class="icon">🤖</div><h3>Custom Commands</h3><p>Create keyword-based public auto-replies.</p></article><article class="card"><div class="icon">👑</div><h3>Server Owners DM</h3><p>Owners can send Airi a normal DM for reports, ideas, feature requests or help.</p></article></div></section>
+<section id="commands" class="panel"><div class="panel-head"><div><h2>Commands ⌨️</h2><div class="sub">Quick reference for your server.</div></div></div><div class="commands"><div class="cmd"><code>/addon &lt;query&gt;</code><span>Search CurseForge addons</span></div><div class="cmd"><code>/donate</code><span>Show donation QR privately</span></div><div class="cmd"><code>/config</code><span>Configure Airi features</span></div><div class="cmd"><code>/notify</code><span>Manage content notifications</span></div><div class="cmd"><code>/customcommand</code><span>Create keyword auto-replies</span></div><div class="cmd"><code>DM Airi</code><span>Normal message — no command needed</span></div></div></section>
+<section id="addons" class="panel"><div class="panel-head"><div><h2>Addon Search 🔎</h2><div class="sub">Use Airi directly in Discord.</div></div></div><div class="notice"><b>/addon &lt;query&gt;</b><br><span class="sub">Search by addon name, keyword or CurseForge URL. Results can be opened for full details and download.</span></div><div class="cards"><article class="card"><div class="icon">🔍</div><h3>Search</h3><p>Find Bedrock addons using a simple query.</p></article><article class="card"><div class="icon">⬇️</div><h3>Download</h3><p>Open the latest available file through the addon details panel.</p></article></div></section>
+<section id="updates" class="panel"><div class="panel-head"><div><h2>Airi Updates & Announcements 📢</h2><div class="sub">Important bot news for server owners.</div></div></div><div class="notice"><b>Owner DM Updates</b><br><span class="sub">Airi can DM server owners with new features, fixes, improvements and important announcements.</span></div><div class="cards"><article class="card"><div class="icon">🚀</div><h3>New Features</h3><p>Major feature announcements can be sent directly to server owners.</p></article><article class="card"><div class="icon">🛠️</div><h3>Fixes & Improvements</h3><p>Stay informed about important changes and bug fixes.</p></article></div></section>
+<section id="support" class="panel"><div class="panel-head"><div><h2>Support 💬</h2><div class="sub">Contact Airi directly from Discord.</div></div></div><div class="notice"><b>Server owners:</b> open Airi's Discord DM and send a normal message. No command is needed.</div><div class="cards"><button class="card support-dashboard-card" type="button" onclick="openSupport('Report')"><div class="icon">🐛</div><h3>Report</h3><p>Tell Airi about bugs or problems.</p></button><button class="card support-dashboard-card" type="button" onclick="openSupport('Feature Idea')"><div class="icon">💡</div><h3>Feature Idea</h3><p>Send ideas or feature requests directly to Airi.</p></button><button class="card support-dashboard-card" type="button" onclick="openSupport('Help')"><div class="icon">❓</div><h3>Help</h3><p>Ask for help with the bot and its features.</p></button></div></section>
+<section id="owner" class="panel"><div class="panel-head"><div><h2>Server Owners DM 👑</h2><div class="sub">Two-way communication with Airi.</div></div></div><div class="owner"><div class="dm"><h3>📨 Owner → Airi</h3><p class="sub">Just send a normal Discord DM. Use it for:</p><p>🐛 Reports & bugs<br>💡 Feature requests<br>💭 Ideas & suggestions<br>🆘 Help with Airi</p></div><div class="dm"><h3>📢 Airi → Owners</h3><p class="sub">Airi can send important updates and announcements to server owners.</p><p>🚀 New features<br>🛠️ Fixes & improvements<br>📣 Important announcements</p></div></div><div class="notice" style="margin-top:15px">Make sure your Discord privacy settings allow DMs from users/servers where Airi is present.</div></section>
+</div></section>
+<div id="supportPanel" class="support-modal" aria-hidden="true">
+  <div class="support-backdrop" onclick="closeSupport()"></div>
+  <div class="support-box" role="dialog" aria-modal="true" aria-labelledby="supportTitle">
+    <button class="support-close" type="button" onclick="closeSupport()" aria-label="Close">×</button>
+
+    <div class="support-kicker">AIRi SUPPORT</div>
+    <h3 id="supportTitle">Report</h3>
+    <p class="support-note">Your email is not saved by this website.</p>
+
+    <label class="support-label" for="supportEmail">Email</label>
+    <input id="supportEmail" class="support-input" type="email"
+           placeholder="you@example.com" autocomplete="email">
+
+    <label class="support-label" for="supportMessage">Message</label>
+    <textarea id="supportMessage" class="support-input support-textarea"
+              placeholder="Write your message..." rows="7"></textarea>
+
+    <label class="support-label" for="supportImages">Images</label>
+    <input id="supportImages" class="support-file" type="file"
+           accept="image/*" multiple>
+    <div id="supportFiles" class="support-files">No images selected</div>
+
+    <button id="supportContinue" class="btn primary support-submit"
+            type="button" onclick="continueToGitHub()">Continue to GitHub</button>
+
+    <div id="supportStatus" class="support-status" aria-live="polite"></div>
+  </div>
+</div>
+
+</main><footer><div class="wrap foot"><div>© 2026 Airi · Founder: <b>PPYGaming</b> · Tamil Crafters Studio</div><div class="footlinks"><button class="footer-link" type="button" onclick="openExternal(privacyUrl)">Privacy Policy</button><button class="footer-link" type="button" onclick="openExternal(termsUrl)">Terms of Service</button><button class="footer-link" type="button" onclick="inviteAiri()">Invite Airi</button></div></div></footer>
+<script>
+const inviteUrl='https://discord.com/oauth2/authorize?client_id=1348514734110150657&permissions=117792&integration_type=0&scope=bot';
+const privacyUrl='https://ppygaming.github.io/Airi-privacy/';
+const termsUrl='https://ppygaming.github.io/Airi/';
+function inviteAiri(){window.open(inviteUrl,'_blank','noopener,noreferrer');}
+function openExternal(url){window.open(url,'_blank','noopener,noreferrer');}
+function openPanel(id,scrollToDashboard){const panel=document.getElementById(id),button=document.querySelector('.side button[data-panel="'+id+'"]');if(!panel)return;document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.side button').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-current','false')});panel.classList.add('active');if(button){button.classList.add('active');button.setAttribute('aria-current','page')}history.replaceState(null,'','#'+id);if(scrollToDashboard){const dashboard=document.querySelector('.layout');if(dashboard)setTimeout(()=>dashboard.scrollIntoView({behavior:'smooth',block:'start'}),20)}}function loadPanel(){const hash=(location.hash||'#home').slice(1);openPanel(document.getElementById(hash)?hash:'home',false)}window.addEventListener('hashchange',loadPanel);loadPanel();</script>
+<script>
+const AIRI_SUPPORT_GITHUB = "https://github.com/PPYGaming/Airi/issues/new";
+
+let selectedSupportType = "Report";
+
+function openSupport(type){
+  selectedSupportType = type;
+  document.getElementById("supportTitle").textContent = type;
+  document.getElementById("supportEmail").value = "";
+  document.getElementById("supportMessage").value = "";
+  document.getElementById("supportImages").value = "";
+  document.getElementById("supportFiles").textContent = "No images selected";
+  document.getElementById("supportStatus").textContent = "";
+  document.getElementById("supportPanel").classList.add("open");
+  document.getElementById("supportPanel").setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeSupport(){
+  document.getElementById("supportPanel").classList.remove("open");
+  document.getElementById("supportPanel").setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape") closeSupport();
+});
+
+document.getElementById("supportImages").addEventListener("change", function(){
+  const files = Array.from(this.files || []);
+  document.getElementById("supportFiles").textContent =
+    files.length ? files.map(f => f.name).join(", ") : "No images selected";
+});
+
+function continueToGitHub(){
+  const email = document.getElementById("supportEmail").value.trim();
+  const message = document.getElementById("supportMessage").value.trim();
+
+  if(!email){
+    document.getElementById("supportStatus").textContent = "Please enter your email.";
+    document.getElementById("supportEmail").focus();
+    return;
+  }
+
+  if(!message){
+    document.getElementById("supportStatus").textContent = "Please enter your message.";
+    document.getElementById("supportMessage").focus();
+    return;
+  }
+
+  const body =
+`**Email:** ${email}
+
+**Message:**
+${message}
+
+**Images:**
+Please attach your selected image(s) to this GitHub issue before submitting.
+
+---
+Submitted from Airi Support`;
+
+  const url = AIRI_SUPPORT_GITHUB +
+    "?title=" + encodeURIComponent(selectedSupportType) +
+    "&body=" + encodeURIComponent(body);
+
+  document.getElementById("supportStatus").textContent =
+    "Opening GitHub… Add your image(s), then click “Submit new issue” on GitHub.";
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+</script>
+
+</body></html>
