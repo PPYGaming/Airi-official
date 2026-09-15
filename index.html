@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airi — Minecraft Bedrock Discord Bot</title>
+<meta name="description" content="Airi is a powerful Minecraft Bedrock Discord Bot with CurseForge addon search, update notifications, YouTube alerts, welcome messages, invite logs and custom commands.">
+<meta name="theme-color" content="#7c3cff">
+<meta property="og:title" content="Airi — Minecraft Bedrock Discord Bot">
+<meta property="og:description" content="Your Minecraft Bedrock Discord Assistant. Powerful, simple, made for your community.">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --bg:#050718; --panel:rgba(5,10,32,.76); --panel2:rgba(13,18,55,.72);
+  --line:rgba(100,130,255,.32); --text:#f8fbff; --muted:#aab5d8;
+  --blue:#39a7ff; --purple:#a855f7; --pink:#ff4fd8; --cyan:#22d3ee;
+  --green:#35e68b; --yellow:#ffd83d; --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:#030513 url("background.png") center/cover fixed no-repeat;
+  min-height:100vh; overflow-x:hidden;
+}
+body:before{
+  content:""; position:fixed; inset:0; z-index:-2;
+  background:radial-gradient(circle at 50% 20%,rgba(70,50,180,.28),transparent 38%),
+             linear-gradient(180deg,rgba(2,5,20,.42),rgba(2,4,15,.92));
+}
+body:after{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.9) 1px,transparent 1px);
+  background-size:90px 90px; opacity:.12; animation:stars 18s linear infinite;
+}
+@keyframes stars{to{background-position:90px 90px}}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:250px;padding:22px 16px;
+  background:rgba(2,5,20,.88);backdrop-filter:blur(22px);border-right:1px solid var(--line);
+  z-index:20;
+}
+.brand{display:flex;align-items:center;gap:10px;padding:5px 10px 24px;font-size:26px;font-weight:900}
+.brand .orb{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#4ddcff,#a855f7);box-shadow:0 0 28px #5b5cff99}
+.brand small{display:block;font-size:10px;color:#9aa8dc;letter-spacing:1.5px}
+.nav{display:grid;gap:9px}
+.nav a{
+  display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid transparent;
+  border-radius:18px;color:#dbe4ff;transition:.25s;cursor:pointer
+}
+.nav a:hover,.nav a.active{background:linear-gradient(100deg,#4338ca99,#8b5cf655);border-color:#737cff66;box-shadow:0 0 22px #573cff33;transform:translateX(3px)}
+.nav .ico{width:26px;text-align:center;font-size:19px}
+.side-title{margin:25px 10px 9px;color:#55cfff;font-size:12px;text-transform:uppercase;letter-spacing:1.8px;font-weight:800}
+.side-btn{
+  display:flex;gap:10px;align-items:center;width:100%;margin:9px 0;padding:12px 14px;border-radius:17px;
+  border:1px solid #546bdb66;background:#0b1334aa;color:white;cursor:pointer;transition:.2s
+}
+.side-btn:hover{transform:translateY(-2px);box-shadow:0 0 20px #3b82f655}
+.main{grid-column:2;min-width:0}
+.topbar{
+  position:sticky;top:0;z-index:15;display:flex;align-items:center;gap:20px;padding:15px 28px;
+  background:rgba(3,6,22,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)
+}
+.search{flex:1;max-width:560px;border:1px solid #5167c866;background:#08102caa;border-radius:999px;padding:12px 18px;color:white;outline:none}
+.search:focus{border-color:#8b7cff;box-shadow:0 0 22px #7c3cff44}
+.status{margin-left:auto;display:flex;align-items:center;gap:8px;padding:9px 15px;border:1px solid #20d77a77;border-radius:999px;background:#062b1b99;font-size:13px}
+.dot{width:9px;height:9px;border-radius:50%;background:#38e68a;box-shadow:0 0 12px #38e68a}
+.toplinks{display:flex;gap:14px;color:#dbe4ff;font-size:14px}
+.hero{
+  margin:26px; min-height:430px; border:1px solid #5971ff66; border-radius:34px; overflow:hidden;
+  position:relative; background:linear-gradient(135deg,#060b27cc,#16082bcc 58%,#061b35cc);
+  box-shadow:0 0 60px #1b2cff22,inset 0 0 70px #4c2cff11;
+}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 68% 25%,#7c3cff33,transparent 32%),radial-gradient(circle at 90% 75%,#00d9ff22,transparent 28%)}
+.hero-inner{position:relative;z-index:1;padding:62px 55px;max-width:760px}
+.kicker{color:#69d7ff;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px}
+h1{font-size:clamp(48px,7vw,88px);line-height:.95;margin:12px 0 16px;
+  background:linear-gradient(90deg,#fff,#9bdcff,#c58cff,#fff);-webkit-background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 22px #704dff66)}
+.hero p{font-size:18px;color:#c8d2f5;max-width:650px;line-height:1.65}
+.bubbles{display:flex;flex-wrap:wrap;gap:11px;margin:24px 0}
+.bubble{padding:9px 14px;border-radius:999px;border:1px solid #6d78e566;background:#0c1234bb;color:#dce7ff}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.btn{
+  border:0;border-radius:999px;padding:15px 23px;color:white;font-weight:900;cursor:pointer;
+  transition:.25s;box-shadow:0 0 26px #6f42ff55;display:inline-flex;align-items:center;gap:9px
+}
+.btn.primary{background:linear-gradient(100deg,#4f46e5,#a855f7,#ec4899)}
+.btn.secondary{background:#091330dd;border:1px solid #5f76db}
+.btn:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 35px #7c3cff55}
+.hero-orb{
+  position:absolute;right:5%;bottom:-70px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ffffff,#7bdcff 9%,#7c3cff 32%,#22115c 67%,transparent 70%);
+  filter:drop-shadow(0 0 55px #7c3cff99);opacity:.8;animation:float 5s ease-in-out infinite
+}
+@keyframes float{50%{transform:translateY(-18px) rotate(5deg)}}
+.content{padding:0 26px 45px}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin:30px 0 16px}
+.section-head h2{margin:0;font-size:27px}.section-head span{color:#8290bd;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{
+  padding:21px;border:1px solid #5368c855;border-radius:var(--radius);background:var(--panel);
+  backdrop-filter:blur(15px);box-shadow:inset 0 0 30px #4b35ff09;transition:.25s;position:relative;overflow:hidden
+}
+.card:after{content:"";position:absolute;width:120px;height:120px;right:-50px;top:-55px;border-radius:50%;background:#8b5cf622;filter:blur(5px)}
+.card:hover{transform:translateY(-5px);border-color:#8c86ff99;box-shadow:0 14px 35px #0008,0 0 28px #673dff22}
+.icon{width:50px;height:50px;border-radius:17px;display:grid;place-items:center;font-size:25px;margin-bottom:14px;
+  background:linear-gradient(145deg,#4c42ff55,#00d9ff22);border:1px solid #7181ff66;box-shadow:0 0 20px #5c54ff33}
+.card h3{margin:0 0 7px;font-size:17px}.card p{margin:0;color:#aeb9dc;line-height:1.5;font-size:13px}
+.pill{display:inline-block;margin-top:12px;padding:5px 9px;border-radius:999px;background:#24e78b22;border:1px solid #24e78b55;color:#7effb5;font-size:11px;font-weight:800}
+.dashboard{display:grid;grid-template-columns:1.25fr .75fr;gap:15px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat{padding:16px;border-radius:20px;background:#080f2caa;border:1px solid #4d64bd55;text-align:center}
+.stat b{display:block;font-size:24px}.stat span{font-size:11px;color:#8794bc}
+.progress{height:8px;border-radius:999px;background:#111a40;margin-top:14px;overflow:hidden}.progress i{display:block;width:78%;height:100%;background:linear-gradient(90deg,#22d3ee,#8b5cf6,#f43fba);box-shadow:0 0 16px #8b5cf6}
+.update{display:flex;gap:11px;align-items:center;padding:13px 0;border-bottom:1px solid #36477d55}.update:last-child{border-bottom:0}
+.uicon{width:33px;height:33px;border-radius:11px;display:grid;place-items:center;background:#14205a;border:1px solid #5b6cff55}
+.update small{display:block;color:#7e8bb5;margin-top:3px}
+.owner{
+  margin-top:15px;display:grid;grid-template-columns:1fr 1fr;gap:15px
+}
+.owner .card{min-height:170px}
+.feature-more{margin-top:15px;text-align:center;padding:13px;border-radius:999px;border:1px solid #7e4fff99;background:linear-gradient(90deg,#25145e99,#101a4d99)}
+footer{padding:25px 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;color:#7f8bb3;font-size:12px}
+.modal-backdrop{position:fixed;inset:0;background:#02030dcc;backdrop-filter:blur(12px);display:none;place-items:center;z-index:50;padding:20px}
+.modal-backdrop.open{display:grid}
+.modal{width:min(680px,100%);max-height:88vh;overflow:auto;border:1px solid #6675ff88;border-radius:30px;background:#070c25f2;padding:28px;box-shadow:0 30px 100px #000}
+.modal h2{margin-top:0}.close{float:right;border:1px solid #6675ff55;background:#11183d;color:white;border-radius:50%;width:36px;height:36px;cursor:pointer}
+.command-list{display:grid;gap:10px}.command{padding:13px 15px;border-radius:16px;background:#0c1435;border:1px solid #4e60aa55}.command code{color:#8ee8ff;font-weight:800}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s}.reveal.show{opacity:1;transform:none}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(2,1fr)}.dashboard{grid-template-columns:1fr}.hero-orb{opacity:.35}}
+@media(max-width:780px){
+ .app{display:block}.sidebar{position:fixed;left:10px;right:10px;bottom:10px;top:auto;width:auto;height:68px;padding:7px 8px;border:1px solid #596be877;border-radius:24px;display:flex;align-items:center;justify-content:center}
+ .brand,.side-title,.side-btn{display:none}.nav{display:flex;justify-content:space-around;width:100%}.nav a{padding:10px 12px;justify-content:center}.nav a span:last-child{display:none}
+ .main{padding-bottom:82px}.topbar{padding:12px 15px}.toplinks{display:none}.status{font-size:11px}
+ .hero{margin:15px;min-height:440px}.hero-inner{padding:45px 25px}.hero-orb{right:-100px;bottom:-60px}.content{padding:0 15px 30px}.grid{grid-template-columns:1fr}.owner{grid-template-columns:1fr}footer{display:block;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="orb">🤖</div><div>Airi<small>MINECRAFT DISCORD BOT</small></div></div>
+  <nav class="nav">
+    <a class="active" href="#home"><span class="ico">⌂</span><span>Home</span></a>
+    <a href="#commands"><span class="ico">⌘</span><span>Commands</span></a>
+    <a href="#features"><span class="ico">✦</span><span>Features</span></a>
+    <a href="#addons"><span class="ico">◇</span><span>Addons</span></a>
+    <a href="#updates"><span class="ico">♟</span><span>Updates</span></a>
+    <a href="#support"><span class="ico">♡</span><span>Support</span></a>
+  </nav>
+  <div class="side-title">Quick Links</div>
+  <a class="side-btn" href="https://discord.com/oauth2/authorize?client_id=1348514734110150657&permissions=4503602043546672&integration_type=0&scope=bot" target="_blank">💬 Invite Airi</a>
+  <a class="side-btn" href="https://github.com/" target="_blank">◈ GitHub</a>
+  <button class="side-btn" onclick="openModal('supportModal')">💡 Report / Suggest</button>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <input id="search" class="search" placeholder="🔎  Search Airi features, commands..." oninput="filterCards(this.value)">
+  <div class="status"><i class="dot"></i> Bot Online</div>
+  <div class="toplinks"><a href="https://github.com/" target="_blank">GitHub</a><a href="https://discord.com/" target="_blank">Discord</a></div>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-inner">
+    <div class="kicker">✦ Your Minecraft Bedrock Assistant ✦</div>
+    <h1>Airi</h1>
+    <p>Powerful, simple and made for Minecraft communities. Search and download Bedrock addons, receive updates, manage community notifications and connect with Airi support.</p>
+    <div class="bubbles"><span class="bubble">⚡ Fast</span><span class="bubble">🛡 Safe & Reliable</span><span class="bubble">💜 Active Support</span><span class="bubble">⛏ Minecraft Lovers</span></div>
+    <div class="cta-row">
+      <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1348514734110150657&permissions=4503602043546672&integration_type=0&scope=bot" target="_blank">💬 Add Airi to Your Server →</a>
+      <button class="btn secondary" onclick="openModal('commandsModal')">View Commands</button>
+    </div>
+  </div>
+  <div class="hero-orb">🤖</div>
+</section>
+
+<section id="features" class="content">
+  <div class="section-head"><h2>⭐ Airi Features</h2><span>More features coming soon</span></div>
+  <div id="cards" class="grid">
+    <article class="card reveal" data-search="addon curseforge minecraft bedrock search download"><div class="icon">🔎</div><h3>/addon</h3><p>Search and download Minecraft Bedrock addons from CurseForge with easy result pages and direct download links.</p><span class="pill">NEW</span></article>
+    <article class="card reveal" data-search="curseforge integration addons"><div class="icon">🧊</div><h3>CurseForge Integration</h3><p>Connect your community to addon discovery with project pages and direct file download actions.</p></article>
+    <article class="card reveal" data-search="addon update notifications"><div class="icon">🔔</div><h3>Addon Update Notifications</h3><p>Get notified when tracked addons receive new files or updates.</p></article>
+    <article class="card reveal" data-search="youtube notifications alerts"><div class="icon">▶️</div><h3>YouTube Notifications</h3><p>Receive alerts when your favorite YouTube channels publish new videos.</p></article>
+    <article class="card reveal" data-search="welcome goodbye members"><div class="icon">👋</div><h3>Welcome / Goodbye</h3><p>Automatic welcome and goodbye messages for your community members.</p></article>
+    <article class="card reveal" data-search="invite logs members invites"><div class="icon">👥</div><h3>Invite Logs</h3><p>Track new members and invite activity with dedicated logging.</p></article>
+    <article class="card reveal" data-search="custom commands keyword auto replies"><div class="icon">🤖</div><h3>Custom Commands</h3><p>Create keyword-based auto replies and custom community responses.</p></article>
+    <article class="card reveal" data-search="owner dm support report bug feature request"><div class="icon">✉️</div><h3>Server Owner DM</h3><p>Server owners can contact Airi directly by sending a normal DM — no command required.</p><span class="pill">NEW</span></article>
+    <article class="card reveal" data-search="updates announcements founder"><div class="icon">📣</div><h3>Airi Updates & Announcements</h3><p>Airi can DM server owners with updates, new features, fixes, improvements and special announcements.</p><span class="pill">NEW</span></article>
+  </div>
+  <div class="feature-more">👑 <b>More Features Coming Soon!</b> ✨</div>
+</section>
+
+<section id="addons" class="content">
+  <div class="section-head"><h2>📦 Addon Center</h2><span>Powered by CurseForge</span></div>
+  <div class="dashboard">
+    <div class="card reveal">
+      <h3>Search Minecraft Bedrock Addons</h3>
+      <p>Use <b>/addon &lt;query&gt;</b> inside Discord to discover addons. Results are presented with descriptions, downloads, latest files and useful action buttons.</p>
+      <div class="stat-grid"><div class="stat"><b>20</b><span>Results</span></div><div class="stat"><b>10</b><span>Per Page</span></div><div class="stat"><b>1</b><span>Command</span></div></div>
+      <div class="progress"><i></i></div>
+      <p style="margin-top:8px">Simple addon discovery experience</p>
+    </div>
+    <div class="card reveal">
+      <h3>✨ Addon Details</h3>
+      <div class="update"><div class="uicon">⬇️</div><div><b>Direct Download</b><small>Quickly get the latest file</small></div></div>
+      <div class="update"><div class="uicon">🌐</div><div><b>Project Page</b><small>Open the CurseForge project</small></div></div>
+      <div class="update"><div class="uicon">📊</div><div><b>Download Stats</b><small>See total project downloads</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="updates" class="content">
+  <div class="section-head"><h2>🔔 Latest Updates</h2><span>Live-style dashboard preview</span></div>
+  <div class="card reveal">
+    <div class="update"><div class="uicon">🔎</div><div><b>New /addon features added!</b><small>Improved addon discovery experience</small></div></div>
+    <div class="update"><div class="uicon">🛠</div><div><b>Bug fixes & performance improvements</b><small>Keeping Airi fast and reliable</small></div></div>
+    <div class="update"><div class="uicon">▶️</div><div><b>YouTube notification system updated</b><small>Better channel alert workflow</small></div></div>
+    <div class="update"><div class="uicon">👋</div><div><b>New welcome message options</b><small>More customization for communities</small></div></div>
+  </div>
+</section>
+
+<section id="commands" class="content">
+  <div class="section-head"><h2>⌘ Command Center</h2><span>Quick reference</span></div>
+  <div class="card reveal">
+    <div class="command-list">
+      <div class="command"><code>/addon &lt;query&gt;</code> — Search Bedrock addons</div>
+      <div class="command"><code>/donate</code> — Show donation QR privately</div>
+      <div class="command"><code>/config</code> — Configure channels and community settings</div>
+      <div class="command"><code>/notify</code> — Configure CurseForge and YouTube alerts</div>
+      <div class="command"><code>/customcommand</code> — Create keyword auto-replies</div>
+    </div>
+  </div>
+</section>
+
+<section id="support" class="content">
+  <div class="section-head"><h2>💌 Support & Owner Communication</h2><span>No command needed</span></div>
+  <div class="owner">
+    <div class="card reveal"><div class="icon">👑</div><h3>Server Owners DM</h3><p>Server owners can simply send Airi a normal DM to report bugs, request features, share ideas or ask for help.</p></div>
+    <div class="card reveal"><div class="icon">📣</div><h3>Airi Updates & Announcements</h3><p>Airi can contact server owners directly with important updates, new features, fixes, improvements and special events.</p></div>
+  </div>
+</section>
+
+<footer><span>© 2026 Airi • Founder: <b>PPYGaming</b> • Tamil Crafters Studio</span><span>Built with 💜 for the Minecraft community</span></footer>
+</main>
+</div>
+
+<div id="commandsModal" class="modal-backdrop" onclick="closeIfOutside(event,this)">
+  <div class="modal"><button class="close" onclick="closeModal('commandsModal')">×</button><h2>⌘ Airi Commands</h2>
+    <div class="command-list">
+      <div class="command"><code>/addon &lt;query&gt;</code><br>Search CurseForge Bedrock addons.</div>
+      <div class="command"><code>/donate</code><br>Private donation QR, auto-deleted after 5 minutes.</div>
+      <div class="command"><code>/config</code><br>Owner/admin configuration system.</div>
+      <div class="command"><code>/notify</code><br>CurseForge and YouTube notification setup.</div>
+      <div class="command"><code>/customcommand</code><br>Keyword auto-replies and custom commands.</div>
+    </div>
+  </div>
+</div>
+
+<div id="supportModal" class="modal-backdrop" onclick="closeIfOutside(event,this)">
+  <div class="modal"><button class="close" onclick="closeModal('supportModal')">×</button><h2>💌 Contact Airi</h2>
+    <p style="color:#aeb9dc;line-height:1.7">Server owners can contact Airi directly by sending a normal Discord DM. No command is required.</p>
+    <a class="btn primary" href="https://discord.com/oauth2/authorize?client_id=1348514734110150657&permissions=4503602043546672&integration_type=0&scope=bot" target="_blank">💬 Add Airi to Discord</a>
+  </div>
+</div>
+
+<script>
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+function closeIfOutside(e,el){if(e.target===el)el.classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop').forEach(x=>x.classList.remove('open'))})
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+function filterCards(q){
+  q=q.toLowerCase().trim();
+  document.querySelectorAll('#cards .card').forEach(card=>{
+    card.style.display=(!q||card.dataset.search.includes(q)||card.innerText.toLowerCase().includes(q))?'block':'none';
+  });
+}
+document.querySelectorAll('.nav a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
