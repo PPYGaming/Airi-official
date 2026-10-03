@@ -63,6 +63,11 @@
   .support-grid{grid-template-columns:1fr}
   .support-box{padding:22px}
 }
+.support-box.sent .support-label,.support-box.sent .support-input,.support-box.sent #supportContinue,.support-box.sent #supportStatus,.support-box.sent>.support-note,.support-box.sent #supportTitle,.support-box.sent .support-kicker{display:none}
+.support-box.sent .support-done{display:block!important}
+.support-done{text-align:center;padding:10px 0 4px}
+.support-done h3{margin:10px 0 6px}
+.support-tick{width:64px;height:64px;margin:0 auto;border-radius:50%;display:grid;place-items:center;font-size:32px;font-weight:900;color:#032;background:var(--ok);box-shadow:0 0 26px rgba(69,239,139,.4)}
 </style>
 
 
@@ -99,44 +104,6 @@
 <section id="support" class="panel"><div class="panel-head"><div><h2>Support 💬</h2><div class="sub">Contact Airi directly from Discord.</div></div></div><div class="notice"><b>Server owners:</b> open Airi's Discord DM and send a normal message. No command is needed.</div><div class="cards"><button class="card support-dashboard-card" type="button" onclick="openSupport('Report')"><div class="icon">🐛</div><h3>Report</h3><p>Tell Airi about bugs or problems.</p></button><button class="card support-dashboard-card" type="button" onclick="openSupport('Feature Idea')"><div class="icon">💡</div><h3>Feature Idea</h3><p>Send ideas or feature requests directly to Airi.</p></button><button class="card support-dashboard-card" type="button" onclick="openSupport('Help')"><div class="icon">❓</div><h3>Help</h3><p>Ask for help with the bot and its features.</p></button></div></section>
 <section id="owner" class="panel"><div class="panel-head"><div><h2>Server Owners DM 👑</h2><div class="sub">Two-way communication with Airi.</div></div></div><div class="owner"><div class="dm"><h3>📨 Owner → Airi</h3><p class="sub">Just send a normal Discord DM. Use it for:</p><p>🐛 Reports & bugs<br>💡 Feature requests<br>💭 Ideas & suggestions<br>🆘 Help with Airi</p></div><div class="dm"><h3>📢 Airi → Owners</h3><p class="sub">Airi can send important updates and announcements to server owners.</p><p>🚀 New features<br>🛠️ Fixes & improvements<br>📣 Important announcements</p></div></div><div class="notice" style="margin-top:15px">Make sure your Discord privacy settings allow DMs from users/servers where Airi is present.</div></section>
 </div></section>
-<div id="githubGuide" class="github-guide" aria-hidden="true">
-  <div class="support-backdrop" onclick="closeGithubGuide()"></div>
-  <div class="support-box github-guide-box" role="dialog" aria-modal="true" aria-labelledby="githubGuideTitle">
-    <button class="support-close" type="button" onclick="closeGithubGuide()" aria-label="Close">×</button>
-    <div class="support-kicker">GITHUB SUBMISSION</div>
-    <h3 id="githubGuideTitle">How to submit your request</h3>
-
-    <div class="guide-step">
-      <b>1. Open the GitHub Issue page</b>
-      <p>If you are already logged in to GitHub, you will go directly to the Airi issue page. You do not need to log in again.</p>
-      <p>If you are not logged in, GitHub will first open the <strong>Login</strong> page. Log in to your existing account, or create a new GitHub account. After login or account creation, GitHub will automatically continue to the correct Airi issue page.</p>
-    </div>
-
-    <div class="guide-step">
-      <b>2. Check the Issue title and message</b>
-      <p>The <strong>Title</strong> is automatically filled with your selected category: <strong>Report</strong>, <strong>Feature Idea</strong>, or <strong>Help</strong>. Your Discord username and message are also filled in automatically.</p>
-    </div>
-
-    <div class="guide-step">
-      <b>3. Upload your image</b>
-      <p>On the GitHub issue page, use the <strong>Add Files</strong> option below the description box. Select your screenshot or image and wait for the upload to finish.</p>
-      <p>You can add your image directly on GitHub. This website does not upload or store your image.</p>
-    </div>
-
-    <div class="guide-step">
-      <b>4. Submit your request</b>
-      <p>After checking the title, Discord username, message, and image, scroll down to the bottom of the GitHub page.</p>
-      <p>Tap the <strong>green Create</strong> button to submit the issue. On some GitHub pages, this button may be shown as <strong>Create issue</strong> or <strong>Submit new issue</strong>.</p>
-    </div>
-
-    <div class="guide-warning">
-      <strong>Important:</strong> If you are already logged in, GitHub opens the issue page directly. If you need to log in or create an account, GitHub returns you to the correct issue page automatically after authentication. Finally, use <strong>Add Files</strong> to upload your image and tap the <strong>green Create</strong> button to submit.
-    </div>
-
-    <button class="btn primary support-submit" type="button" onclick="openGitHubIssue()">Open GitHub Issue</button>
-  </div>
-</div>
-
 <div id="supportPanel" class="support-modal" aria-hidden="true">
   <div class="support-backdrop" onclick="closeSupport()"></div>
   <div class="support-box" role="dialog" aria-modal="true" aria-labelledby="supportTitle">
@@ -144,7 +111,7 @@
 
     <div class="support-kicker">AIRi SUPPORT</div>
     <h3 id="supportTitle">Report</h3>
-    <p class="support-note">Your Discord username is used only to identify your request. It is not saved by this website.</p>
+    <p class="support-note">Your Discord username and message are sent to Airi Support by email. Nothing is saved on this website.</p>
 
     <label class="support-label" for="supportDiscord">Discord Username</label>
     <input id="supportDiscord" class="support-input" type="text"
@@ -155,9 +122,10 @@
               placeholder="Write your message..." rows="7"></textarea>
 
     <button id="supportContinue" class="btn primary support-submit"
-            type="button" onclick="continueToGitHub()">Continue to GitHub</button>
+            type="button" onclick="sendSupport()">Send</button>
 
     <div id="supportStatus" class="support-status" aria-live="polite"></div>
+    <div id="supportDone" class="support-done" style="display:none"><div class="support-tick">✓</div><h3>Sent!</h3><p class="support-note">Thanks, Airi Support got your message and will look at it soon.</p><button class="btn primary support-submit" type="button" onclick="closeSupport()">Close</button></div>
   </div>
 </div>
 
@@ -170,7 +138,7 @@ function inviteAiri(){window.open(inviteUrl,'_blank','noopener,noreferrer');}
 function openExternal(url){window.open(url,'_blank','noopener,noreferrer');}
 function openPanel(id,scrollToDashboard){const panel=document.getElementById(id),button=document.querySelector('.side button[data-panel="'+id+'"]');if(!panel)return;document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.side button').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-current','false')});panel.classList.add('active');if(button){button.classList.add('active');button.setAttribute('aria-current','page')}history.replaceState(null,'','#'+id);if(scrollToDashboard){const dashboard=document.querySelector('.layout');if(dashboard)setTimeout(()=>dashboard.scrollIntoView({behavior:'smooth',block:'start'}),20)}}function loadPanel(){const hash=(location.hash||'#home').slice(1);openPanel(document.getElementById(hash)?hash:'home',false)}window.addEventListener('hashchange',loadPanel);loadPanel();</script>
 <script>
-const AIRI_SUPPORT_GITHUB = "https://github.com/PPYGaming/Airi-Notification-/issues/new";
+const AIRI_FORM_KEY = "b2741bc6-6e41-4937-a17a-c1ec79a89f67";
 
 let selectedSupportType = "Report";
 
@@ -180,17 +148,13 @@ function openSupport(type){
   document.getElementById("supportDiscord").value = "";
   document.getElementById("supportMessage").value = "";
   document.getElementById("supportStatus").textContent = "";
+  document.getElementById("supportDone").style.display = "none";
+  document.querySelector("#supportPanel .support-box").classList.remove("sent");
+  const btn = document.getElementById("supportContinue");
+  btn.disabled = false; btn.textContent = "Send";
   document.getElementById("supportPanel").classList.add("open");
   document.getElementById("supportPanel").setAttribute("aria-hidden","false");
   document.body.style.overflow = "hidden";
-}
-
-function openGitHubIssue(){
-  if(window._airiGitHubIssueUrl) window.open(window._airiGitHubIssueUrl,"_blank","noopener,noreferrer");
-}
-function closeGithubGuide(){
-  document.getElementById("githubGuide").classList.remove("open");
-  document.getElementById("githubGuide").setAttribute("aria-hidden","true");
 }
 
 function closeSupport(){
@@ -200,43 +164,52 @@ function closeSupport(){
 }
 
 document.addEventListener("keydown", function(e){
-  if(e.key === "Escape"){ closeGithubGuide(); closeSupport(); }
+  if(e.key === "Escape"){ closeSupport(); }
 });
 
-
-function continueToGitHub(){
+function sendSupport(){
   const discord = document.getElementById("supportDiscord").value.trim();
   const message = document.getElementById("supportMessage").value.trim();
+  const status = document.getElementById("supportStatus");
+  const btn = document.getElementById("supportContinue");
 
   if(!discord){
-    document.getElementById("supportStatus").textContent = "Please enter your Discord username.";
+    status.textContent = "Please enter your Discord username.";
     document.getElementById("supportDiscord").focus();
     return;
   }
   if(!message){
-    document.getElementById("supportStatus").textContent = "Please enter your message.";
+    status.textContent = "Please enter your message.";
     document.getElementById("supportMessage").focus();
     return;
   }
 
-  const body =
-`**Discord Username:** ${discord}
+  btn.disabled = true; btn.textContent = "Sending...";
+  status.textContent = "";
 
-**Message:**
-${message}
-
-**Images:**
-Please upload your screenshots/images directly on GitHub before submitting, if needed.
-
----
-Submitted from Airi Support`;
-
-  window._airiGitHubIssueUrl = AIRI_SUPPORT_GITHUB +
-    "?title=" + encodeURIComponent(selectedSupportType) +
-    "&body=" + encodeURIComponent(body);
-
-  document.getElementById("githubGuide").classList.add("open");
-  document.getElementById("githubGuide").setAttribute("aria-hidden","false");
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {"Content-Type":"application/json", "Accept":"application/json"},
+    body: JSON.stringify({
+      access_key: AIRI_FORM_KEY,
+      subject: "[" + selectedSupportType + "] " + discord,
+      from_name: "Airi Support",
+      category: selectedSupportType,
+      discord_name: discord,
+      message: message
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(j){
+    if(j && j.success){
+      document.querySelector("#supportPanel .support-box").classList.add("sent");
+      document.getElementById("supportDone").style.display = "block";
+    } else { throw new Error("fail"); }
+  })
+  .catch(function(){
+    status.textContent = "Could not send right now. Please check your internet and try again.";
+    btn.disabled = false; btn.textContent = "Send";
+  });
 }
 </script>
 
