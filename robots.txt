@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://airi-discord-mc-bot.tamilcraftersstudio.in/sitemap.xml
